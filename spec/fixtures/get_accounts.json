@@ -1,0 +1,47 @@
+{
+  "response": {
+    "status": 1000,
+    "transaction_id": "1041",
+    "message": {
+      "account": {
+        "id": "8",
+        "type": "global",
+        "balance": "500.00",
+        "created": "2011-06-09 14:14:35",
+        "user": null,
+        "transaction": [
+          {
+            "type": "increase",
+            "category": "deposit",
+            "amount": "500.00",
+            "comment": "Deposit Approved: 2011-09-12 11:51:25",
+            "transaction_date": "2011-09-12 11:48:43",
+            "status": "approved",
+            "balance": "500.00",
+            "payment_method": "wire"
+          },
+          {
+            "type": "increase",
+            "category": "deposit",
+            "amount": "5000.00",
+            "comment": "Deposit",
+            "transaction_date": "2011-09-15 09:44:02",
+            "status": "pending",
+            "balance": "0.00",
+            "payment_method": "wire"
+          },
+          {
+            "type": "increase",
+            "category": "deposit",
+            "amount": "45.00",
+            "comment": "Deposit",
+            "transaction_date": "2011-09-15 10:36:14",
+            "status": "pending",
+            "balance": "0.00",
+            "payment_method": "check"
+          }
+        ]
+      }
+    }
+  }
+}
