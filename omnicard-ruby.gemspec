@@ -5,7 +5,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "omnicard/version"
 
 Gem::Specification.new do |s|
-  s.name = %q{omnicard}
+  s.name = %q{omnicard-ruby}
   s.version = Omnicard::VERSION
   s.date = %q{2018-10-22}
   s.summary = %q{omnicard works against the OmniCard API 2.x specification February 7, 2018}

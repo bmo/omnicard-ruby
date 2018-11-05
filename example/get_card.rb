@@ -11,7 +11,7 @@ c = Omnicard::Client.new(DEFAULT_OPTIONS)
 
 puts c.inspect
 
-card_id = 53075251
+card_id = 53162149
 
 if c.login()
   begin
@@ -22,6 +22,6 @@ if c.login()
 
   File.open("card_#{card_id}.json", 'w') {|f| f.write(r.to_json) }
 
-  puts JSON.pretty_generate(r['message'])
+  puts JSON.pretty_generate(r)
 
 end
