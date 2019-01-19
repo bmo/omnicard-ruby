@@ -1,4 +1,5 @@
 require 'omnicard/version'
+require 'logger'
 
 module Omnicard
   # Defines constants and methods related to configuration
@@ -8,11 +9,13 @@ module Omnicard
       :username,
       :password,
       :endpoint,
-      :format,
+      :response_format,
       :user_agent,
       :adapter,
       :faraday_options,
-      :faraday_logging].freeze
+      :faraday_logging,
+      :logger
+    ].freeze
 
     # The adapter that will be used to connect if none is set
     DEFAULT_ADAPTER = :net_http
@@ -31,7 +34,7 @@ module Omnicard
     # The response format appended to the path and sent in the 'Accept' header if none is set
     #
     # @note JSON is preferred over XML because it is more concise and faster to parse.
-    DEFAULT_FORMAT = :json
+    DEFAULT_RESPONSE_FORMAT = :json
 
     # The value sent in the 'User-Agent' header if none is set
     DEFAULT_USER_AGENT = "Omnicard Ruby Gem #{Omnicard::VERSION}".freeze
@@ -40,8 +43,11 @@ module Omnicard
 
     DEFAULT_FARADAY_LOGGING = false
 
+    DEFAULT_LOGGER = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+
     # @private
     attr_accessor *VALID_OPTIONS_KEYS
+
 
     # When this module is extended, set all configuration options to their default values
     def self.extended(base)
@@ -52,12 +58,7 @@ module Omnicard
     def configure
       yield self
     end
-
-    # Convenience method determining if pointed to the test env.
-    def test?
-      self.endpoint == DEFAULT_ENDPOINT
-    end
-
+    
     # Create a hash of options and their values
     def options
       options = {}
@@ -71,9 +72,10 @@ module Omnicard
       self.username           = DEFAULT_USERNAME
       self.password           = DEFAULT_PASSWORD
       self.endpoint           = DEFAULT_ENDPOINT
-      self.format             = DEFAULT_FORMAT
+      self.response_format             = DEFAULT_RESPONSE_FORMAT
       self.user_agent         = DEFAULT_USER_AGENT
       self.faraday_options    = DEFAULT_FARADAY_OPTIONS
+      self.logger             = DEFAULT_LOGGER
       self
     end
   end

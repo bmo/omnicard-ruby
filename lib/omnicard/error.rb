@@ -11,6 +11,8 @@ module Omnicard
 
   end
 
+  class InvalidParameters < StandardError; end
+
   # Raised when Omnicard returns the HTTP status code 400
   class BadRequest < Error; end
 

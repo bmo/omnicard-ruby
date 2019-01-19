@@ -25,8 +25,10 @@ module Omnicard
 
         faraday.use Faraday::Response::RaiseHttp4xx
 
+        faraday.use FaradayMiddleware::FollowRedirects, limit:10
+
         unless options[:raw]
-          case options.fetch(:format, format).to_s.downcase
+          case options.fetch(:format, response_format).to_s.downcase
           when 'json'
             faraday.use Faraday::Response::Mashify
             faraday.use Faraday::Response::ParseJson

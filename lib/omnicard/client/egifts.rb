@@ -54,5 +54,21 @@ module Omnicard
         post('egiftOrders/complete.json', {order_id: order_id}.merge(options))
       end
     end
+
+    def raw_get(url)
+      get url, {}, { raw:true }
+    end
+
+    def validate(options={})
+      if options[:card_id]&.blank? && options[:redemption_url]&.blank?
+        raise InvalidParameters.new("Must specify card_id or redemption_url")
+      end
+
+      if options[:redemption_url]
+        logger.debug"Getting #{options[:redemption_url]}"
+        get options[:redemption_url], {}, { raw:true }
+      end
+    end
+    
   end
 end

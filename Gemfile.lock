@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omnicard (0.0.0)
+    omnicard-ruby (0.0.0)
       faraday
       faraday_middleware
       hashie
@@ -52,7 +52,7 @@ PLATFORMS
 
 DEPENDENCIES
   mocha
-  omnicard!
+  omnicard-ruby!
   rake
   redis
   rspec

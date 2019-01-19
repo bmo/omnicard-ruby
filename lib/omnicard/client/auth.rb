@@ -9,7 +9,8 @@ module Omnicard
         yield
       rescue Error => ex
         raise unless [Unauthorized, Forbidden].include?(ex.class)
-        # "HANDLING ERROR, TRYING TO RELOGIN"
+        logger.debug("HANDLING ERROR, TRYING TO RELOGIN")
+        login(true)
         yield
       end
     end
@@ -17,12 +18,15 @@ module Omnicard
     module Auth
 
       def login(no_cache=false, options={})
-
+        logger.debug("Login")
         if no_cache == false && !(@auth_token = (options[:auth_token] || cached_auth_token)).nil?
+          logger.debug("Using Cached Credentials")
            return true  # we think we have an auth token
         end
 
+        logger.debug("Authorizing")
         @auth_token = nil if no_cache
+
 
         response = post('apiUsers/auth.json', authentication)
 
