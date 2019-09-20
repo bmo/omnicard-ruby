@@ -4,8 +4,8 @@ module Omnicard
     attr_reader :http_headers, :http_body
 
     def initialize(message, http_headers, http_body)
-      @http_headers = Hash[http_headers]
-      @http_body = Hash[http_body]
+      @http_headers = Hash[http_headers] if http_headers
+      @http_body = http_body
       super message
     end
 
