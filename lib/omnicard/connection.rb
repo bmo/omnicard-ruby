@@ -14,7 +14,7 @@ module Omnicard
           'User-Agent'   => user_agent,
           #'Content-Type' => "application/json"
         },
-        :ssl => {:verify => true},
+        :ssl => {:verify => false},
         :url => options.fetch(:endpoint, api_endpoint)
       })
 
