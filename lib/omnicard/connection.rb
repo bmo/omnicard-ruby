@@ -6,17 +6,18 @@ module Omnicard
   # @private
   module Connection
     private
-    
+
     def connection(options={})
-      merged_options = faraday_options.merge({
-        :headers => {
-          'Accept'       => "application/json",
-          'User-Agent'   => user_agent,
-          #'Content-Type' => "application/json"
-        },
-        :ssl => {:verify => true},
-        :url => options.fetch(:endpoint, api_endpoint)
-      })
+      default_options = {
+              headers: {
+                  'Accept': "application/json",
+                  'User-Agent': user_agent,
+                  #'Content-Type' => "application/json"
+              },
+              ssl: { verify:true },
+              url: options.fetch(:endpoint, api_endpoint)
+          }
+      merged_options = default_options.merge(faraday_options)
 
       Faraday.new(merged_options) do |faraday|
         faraday.request :url_encoded
