@@ -17,8 +17,7 @@ module Omnicard
       end
 
 
-      # poll this with an id to see if it's completed
-      def orders(id)
+      def orders
         try_with_relogin do
           post('orders/getOrders.json')
         end
