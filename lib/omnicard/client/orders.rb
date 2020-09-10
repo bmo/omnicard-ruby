@@ -1,6 +1,6 @@
 module Omnicard
   class Client
-    # Defines methods related to Omnicard funds
+    # Defines methods related to Omnicard orders
     module Orders
 
       def order_programs(options = {exclude_virtual:true,  exclude_physical:true,  exclude_omnicode:true})

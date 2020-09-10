@@ -1,6 +1,6 @@
 module Omnicard
   class Client
-    # Defines methods related to Omnicard funds
+    # Defines methods related to Omnicard egifts
     module EGifts
 
       def card(card_id)

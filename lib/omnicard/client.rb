@@ -12,6 +12,8 @@ module Omnicard
     require 'omnicard/client/funds'
     require 'omnicard/client/egifts'
     require 'omnicard/client/orders'
+    require 'omnicard/client/cards'
+    require 'omnicard/client/vcards'
 
     alias :api_endpoint :endpoint
 
@@ -20,6 +22,8 @@ module Omnicard
     include Omnicard::Client::Funds
     include Omnicard::Client::EGifts
     include Omnicard::Client::Orders
+    include Omnicard::Client::Cards
+    include Omnicard::Client::VCards
 
   end
 end

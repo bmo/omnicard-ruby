@@ -9,7 +9,7 @@ DEFAULT_OPTIONS = {:username => ENV['OMNICARD_USER'],
 
 c=Omnicard::Client.new(DEFAULT_OPTIONS)
 
-if c.login(faraday_logging: true)
+if c.login(true,faraday_logging: true)
   begin
     r = c.accounts
   rescue Omnicard::Error => ex
@@ -22,9 +22,6 @@ if c.login(faraday_logging: true)
 
   if Omnicard::Request.success?(r)
     puts JSON.pretty_generate(r['response']['message'])
-    r['response']['message'].each do |m|
-      puts("Code: #{m['merchant']['code']} \tMerchant: #{m['merchant']['name']} \tLogo: #{m['merchant']['logo']}")
-    end
   end
 else
   puts "Failed to log in"
