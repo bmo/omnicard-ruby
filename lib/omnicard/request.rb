@@ -23,7 +23,7 @@ module Omnicard
     private
 
     def self.success?(response)
-      response['response']['status'] == 1000
+      response&.dig('response','status') == 1000
     end
 
     def datafy(params)

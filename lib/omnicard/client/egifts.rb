@@ -44,14 +44,13 @@ module Omnicard
         end
       end
 
-    end
-
-    def order_complete(order_id, options)
-      # { options: { digital_signature: 'Ima Bott',
-      #             payment_type: 'check' } } # check, wire, fundsbank
-      #             # account_id: 123         # fundsbank account number only required for that method of payment
-      try_with_relogin do
-        post('egiftOrders/complete.json', {order_id: order_id}.merge(options))
+      def order_complete(order_id, options)
+        # { options: { digital_signature: 'Ima Bott',
+        #             payment_type: 'check' } } # check, wire, fundsbank
+        #             # account_id: 123         # fundsbank account number only required for that method of payment
+        try_with_relogin do
+          post('egiftOrders/complete.json', {order_id: order_id}.merge(options))
+        end
       end
     end
 
